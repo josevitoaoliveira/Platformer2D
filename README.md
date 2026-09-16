@@ -5,8 +5,6 @@
 
 > **Status do Projeto:** Em desenvolvimento ativo 🚀
 
-*(Nota para o Luiz: Substitua a linha abaixo pelo link do seu GIF)*
-`![Demonstração de Gameplay](link_da_sua_imagem_ou_gif_aqui.gif)`
 
 ## 📖 Sobre o Projeto
 Um protótipo de jogo de plataforma 2D focado em movimentação fluida e combate melee preciso, desenvolvido na **Unity (C#)**. Este projeto serve como um laboratório prático para aprofundar conhecimentos em arquitetura de código, física de jogos e engenharia de software aplicada ao Game Design.
