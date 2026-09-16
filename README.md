@@ -31,3 +31,11 @@ Para abrir e testar este projeto na sua máquina:
 2. Clone este repositório no seu terminal:
    ```bash
    git clone [https://github.com/josevitoraoliveira/Platformer2D.git](https://github.com/josevitoraoliveira/Platformer2D.git)
+   Abra o Unity Hub, clique em Add e selecione a pasta clonada.
+
+3. Na Unity, abra a cena principal navegando até Assets/Scenes/SampleScene.unity.
+
+4. Dê Play!
+
+Desenvolvido por José Vitor de Araújo Oliveira
+Apaixonado por lógica, resolução de problemas e Game Development.
