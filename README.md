@@ -37,5 +37,6 @@ Para abrir e testar este projeto na sua máquina:
 
 4. Dê Play!
 
-Desenvolvido por José Vitor de Araújo Oliveira
+Desenvolvido por José Vitor de Araújo Oliveira 
+
 Apaixonado por lógica, resolução de problemas e Game Development.
