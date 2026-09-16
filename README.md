@@ -27,7 +27,7 @@ O objetivo principal deste repositório é demonstrar a criação de sistemas mo
 
 Para abrir e testar este projeto na sua máquina:
 
-1. Certifique-se de ter a **Unity Editor** instalada (Projeto desenvolvido na versão *[Coloque sua versão aqui, ex: 2022.3 LTS]*).
+1. Certifique-se de ter a **Unity Editor** instalada (Projeto desenvolvido na versão 6000.6.0f1).
 2. Clone este repositório no seu terminal:
    ```bash
    git clone [https://github.com/josevitoraoliveira/Platformer2D.git](https://github.com/josevitoraoliveira/Platformer2D.git)
