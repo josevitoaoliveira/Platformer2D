@@ -41,7 +41,12 @@ public class CharacterController : MonoBehaviour
 
     public void DealDamage()
     {
-        Collider2D[] hitEnemies = Physics2D.OverlapCircleAll(AttackPoint.position, AttackRange, EnemyLayers);
+
+        float distanceX = Mathf.Abs(AttackPoint.localPosition.x);
+
+        Vector2 AttackCenter = new Vector2(transform.position.x + (distanceX * FacingDirection), AttackPoint.position.y);
+
+        Collider2D[] hitEnemies = Physics2D.OverlapCircleAll(AttackCenter, AttackRange, EnemyLayers);
 
         foreach (Collider2D enemy in hitEnemies)
         {

@@ -1,4 +1,6 @@
 using UnityEngine;
+using UnityEngine.UI;
+
 
 public class EnemyAI : MonoBehaviour
 {
@@ -16,12 +18,16 @@ public class EnemyAI : MonoBehaviour
 
 
     [SerializeField] int MaxLife = 10;
+    [SerializeField] Image LifeBar;
+
     private int ActualLife;
 
 
     public void TakeDamage(int damageAmount)
     {
         ActualLife -= damageAmount;
+        LifeBar.fillAmount = (float)ActualLife / MaxLife;
+
         TakeHit = true;
         Rigidbody.velocity = new Vector2(0f, Rigidbody.velocity.y);
         animator.SetTrigger("TakeHit");
