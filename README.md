@@ -4,8 +4,8 @@
 ![C#](https://img.shields.io/badge/C%23-239120?style=for-the-badge&logo=c-sharp&logoColor=white)
 
 > **Status do Projeto:** Em desenvolvimento ativo 🚀
->
-![Meu GIF animado](Assets\Animação.gif)
+><img width="721" height="396" alt="Animação" src="https://github.com/user-attachments/assets/bc52d488-b9df-4b0f-ae8b-dcdf0b55b47d" />
+
 
 ## 📖 Sobre o Projeto
 Um protótipo de jogo de plataforma 2D focado em movimentação fluida e combate melee preciso, desenvolvido na **Unity (C#)**. Este projeto serve como um laboratório prático para aprofundar conhecimentos em arquitetura de código, física de jogos e engenharia de software aplicada ao Game Design.
