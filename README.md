@@ -14,16 +14,18 @@ O objetivo principal deste repositório é demonstrar a criação de sistemas mo
 
 ## 🛠️ Destaques Técnicos & Sistemas Implementados
 
+### 🧠 Inteligência Artificial & Inimigos (Enemy AI)
+* **Máquina de Estados Simples:** Inimigos tomam decisões baseadas em distância (visão vs. alcance de ataque), alternando fluidamente entre perseguição (com saltos físicos sobre obstáculos) e ataques baseados em cooldowns.
+* **UI Espacial (World Space Canvas):** Implementação de barras de vida dinâmicas acopladas aos inimigos, com preenchimento calculado matematicamente `(float)ActualLife / MaxLife` e atualizado em tempo real.
+
+### ⚔️ Sistema de Combate Avançado
+* **Hitboxes Matemáticas Bidirecionais:** As áreas de colisão de dano (`Physics2D.OverlapCircleAll`) são projetadas matematicamente via código através de multiplicadores de direção. Isso isola a física da interface visual (`Animator`), prevenindo bugs de travamento de *Transform* causados por animações.
+* **Sistema de I-Frames (Frames de Invencibilidade):** Uso nativo de `IEnumerator` (Coroutines) acoplado a colisões contínuas (`OnCollisionStay2D`) para criar janelas de invulnerabilidade no jogador, garantindo um balanceamento justo e evitando múltiplos hits de contato em um único frame.
+* **Sincronia Arte-Código:** Integração profunda utilizando **Animation Events**. A aplicação de dano e a destruição de *GameObjects* (morte) ocorrem de forma assíncrona, aguardando frames específicos das animações para maximizar o *Game Feel*.
+
 ### 🏃 Movimentação e Física (Rigidbody2D)
-* **Controle Físico Preciso:** A movimentação foi construída utilizando manipulação direta de velocidade no `FixedUpdate`, garantindo consistência na taxa de quadros e evitando "stutters".
-* **Dash com Desaceleração Matemática:** Implementação de mecânica de evasão (Dash) que utiliza `Mathf.Lerp` dentro de uma *Coroutine* para gerar uma transição suave de velocidade, anulando a gravidade temporariamente.
-* **Sistema de Pulo Duplo:** Controle dinâmico de inércia vertical e uso de sobreposição de colisão (OverlapCircle) para verificação de chão.
-
-### ⚔️ Sistema de Combate Melee
-* **Hitboxes Dinâmicas:** Uso de `Physics2D.OverlapCircleAll` e filtragem por *LayerMasks* para garantir que os cálculos de dano ocorram apenas nos objetos desejados (otimização de processamento).
-* **Sincronia Arte-Código:** Integração profunda entre os scripts e o *Animator* utilizando **Animation Events**. O dano e as transições de estado (como a destruição de inimigos) ocorrem em frames específicos da animação, gerando um excelente *Game Feel*.
-* **Coletáveis e Gatilhos lógicos:** Sistema de *Triggers* (OnTriggerEnter2D) acoplado a variáveis de estado (`bool`) para desbloqueio de novas mecânicas (como a obtenção da espada).
-
+* **Controle Físico Preciso:** A movimentação foi construída utilizando manipulação direta de velocidade no `FixedUpdate`.
+* **Mecânica de Evasão (Dash):** Implementação de *Dash* que utiliza `Mathf.Lerp` dentro de uma *Coroutine* para gerar uma desaceleração matemática suave, alterando a escala de gravidade dinamicamente.
 ## 🎮 Como Testar o Projeto
 
 Para abrir e testar este projeto na sua máquina:
