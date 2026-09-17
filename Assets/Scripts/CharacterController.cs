@@ -24,6 +24,11 @@ public class CharacterController : MonoBehaviour
     [SerializeField] int AttackDamage = 5;
     [SerializeField] LayerMask EnemyLayers;
 
+    [SerializeField] int MaxLife = 20;
+
+    public bool canTakeDamage = true;
+    public float invincibilityTime = 1.5f;
+    public int ActualLife;
 
 
 
@@ -67,6 +72,32 @@ public class CharacterController : MonoBehaviour
             HasSword = true;
             Destroy(collision.gameObject);
         }
+    }
+
+    public void TakeDamage(int damageAmount)
+    {
+
+        if (!canTakeDamage)
+        {
+            return;
+        }
+        canTakeDamage = false;
+        StartCoroutine(DamageCooldown());
+        ActualLife -= damageAmount;
+
+        
+        Rigidbody.velocity = new Vector2(0f, Rigidbody.velocity.y);
+
+        if(ActualLife <= 0)
+        {
+            Destroy(gameObject);
+        }
+    }
+
+
+    void Start()
+    {
+        ActualLife = MaxLife;
     }
 
     // Update is called once per frame
@@ -191,5 +222,11 @@ public class CharacterController : MonoBehaviour
     public void FinishAttack()
     {
         IsAttacking = false;
+    }
+
+    private IEnumerator DamageCooldown()
+    {
+        yield return new WaitForSeconds(invincibilityTime);
+        canTakeDamage = true;
     }
 }

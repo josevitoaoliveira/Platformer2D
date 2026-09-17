@@ -15,6 +15,8 @@ public class EnemyAI : MonoBehaviour
 
     [SerializeField] bool TakeHit = false;
     [SerializeField] bool Dead = false;
+    [SerializeField] int AttackDamage = 5;
+
 
 
     [SerializeField] int MaxLife = 10;
@@ -117,6 +119,16 @@ public class EnemyAI : MonoBehaviour
         Destroy(gameObject);
 
         Dead = false;
+
+    }
+
+    private void OnCollisionStay2D(Collision2D collision)
+    {
+        if(collision.gameObject.CompareTag("Player"))
+        {
+            CharacterController playerScript = collision.gameObject.GetComponent<CharacterController>();
+            playerScript.TakeDamage(AttackDamage);
+        }
 
     }
 }
