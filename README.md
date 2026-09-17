@@ -5,7 +5,7 @@
 
 > **Status do Projeto:** Em desenvolvimento ativo 🚀
 >
-![Meu GIF animado](Platformer2D\Assets\Animação.gif)
+![Meu GIF animado](Assets\Animação.gif)
 
 ## 📖 Sobre o Projeto
 Um protótipo de jogo de plataforma 2D focado em movimentação fluida e combate melee preciso, desenvolvido na **Unity (C#)**. Este projeto serve como um laboratório prático para aprofundar conhecimentos em arquitetura de código, física de jogos e engenharia de software aplicada ao Game Design.
