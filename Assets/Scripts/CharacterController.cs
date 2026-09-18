@@ -105,7 +105,9 @@ public class CharacterController : MonoBehaviour
         {
 
             Dead = true;
-            Rigidbody.velocity = new Vector2(0f, 0f);
+            Rigidbody.linearVelocity = new Vector2(0f, 0f);
+            animator.SetTrigger("Dead");
+
         }
     }
 
@@ -132,22 +134,23 @@ public class CharacterController : MonoBehaviour
         }
         animator.SetFloat("FacingDirection", FacingDirection);
 
+        if (Dead)
+        {
+
+            return;
+        }
+
         if (TakeHit)
         {
             return;
         }
 
-        if (Dead)
-        {
-            animator.SetTrigger("Dead");
-
-            return;
-        }
+        
 
         if(Input.GetButtonDown("Jump") && (CheckGround() || DoubleJumped))
         {
 
-            Rigidbody.velocity = new Vector2(Rigidbody.velocity.x, 0f);
+            Rigidbody.linearVelocity = new Vector2(Rigidbody.linearVelocity.x, 0f);
             Rigidbody.AddForce(transform.up * JumpStrength, ForceMode2D.Impulse);
             DoubleJumped = false;
 
@@ -162,14 +165,14 @@ public class CharacterController : MonoBehaviour
 
         if(Input.GetKeyDown(KeyCode.LeftShift) && CanDash)
         {
-            Rigidbody.velocity = new Vector2(0f, Rigidbody.velocity.y);
+            Rigidbody.linearVelocity = new Vector2(0f, Rigidbody.linearVelocity.y);
             StartCoroutine(Dash());
         }
 
         if(Input.GetMouseButtonDown(0) && HasSword && !IsAttacking)
         {
             IsAttacking = true;
-            Rigidbody.velocity = new Vector2(0f, Rigidbody.velocity.y);
+            Rigidbody.linearVelocity = new Vector2(0f, Rigidbody.linearVelocity.y);
             animator.SetTrigger("Attack");
             
         }
@@ -190,7 +193,7 @@ public class CharacterController : MonoBehaviour
 
             return;
         }
-        Rigidbody.velocity = new Vector2(MovementDirection * Speed, Rigidbody.velocity.y);
+        Rigidbody.linearVelocity = new Vector2(MovementDirection * Speed, Rigidbody.linearVelocity.y);
         animator.SetBool("IsDashing", IsDashing);
 
     }
@@ -216,7 +219,7 @@ public class CharacterController : MonoBehaviour
         float OriginalGravity = Rigidbody.gravityScale;
         Rigidbody.gravityScale = 0f;
 
-        Rigidbody.velocity = new Vector2(DashStrength * FacingDirection, 0f);
+        Rigidbody.linearVelocity = new Vector2(DashStrength * FacingDirection, 0f);
 
         yield return new WaitForSeconds(DashDuration);
 
@@ -233,7 +236,7 @@ public class CharacterController : MonoBehaviour
 
             float SmoothSpeed = Mathf.Lerp(DashStrength * FacingDirection, 0f, PercentComplete);
 
-            Rigidbody.velocity = new Vector2(SmoothSpeed, Rigidbody.velocity.y);
+            Rigidbody.linearVelocity = new Vector2(SmoothSpeed, Rigidbody.linearVelocity.y);
 
             yield return null;
         }
@@ -250,6 +253,14 @@ public class CharacterController : MonoBehaviour
         IsAttacking = false;
     }
 
+    public void FinishDeath()
+    {
+        Destroy(gameObject);
+
+        Dead = false;
+
+    }
+
     private IEnumerator HitStun()
 {
     TakeHit = true;
@@ -263,11 +274,5 @@ public class CharacterController : MonoBehaviour
         canTakeDamage = true;
     }
 
-    public void FinishDeath()
-    {
-        Destroy(gameObject);
-
-        Dead = false;
-
-    }
+    
 }

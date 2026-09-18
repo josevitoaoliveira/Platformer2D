@@ -65,13 +65,13 @@ public class EnemyAI : MonoBehaviour
         LifeBar.fillAmount = (float)ActualLife / MaxLife;
 
         TakeHit = true;
-        Rigidbody.velocity = new Vector2(0f, Rigidbody.velocity.y);
+        Rigidbody.linearVelocity = new Vector2(0f, Rigidbody.linearVelocity.y);
         animator.SetTrigger("TakeHit");
 
         if(ActualLife <= 0)
         {
             Dead = true;
-            Rigidbody.velocity = new Vector2(0f, Rigidbody.velocity.y);
+            Rigidbody.linearVelocity = new Vector2(0f, Rigidbody.linearVelocity.y);
             animator.SetTrigger("Dead");
         }
     }
@@ -113,7 +113,7 @@ public class EnemyAI : MonoBehaviour
 
             if (Player.position.y > transform.position.y + 1.5f && isEnemyGrounded)
             {
-                Rigidbody.velocity = new Vector2(Rigidbody.velocity.x, 0f);
+                Rigidbody.linearVelocity = new Vector2(Rigidbody.linearVelocity.x, 0f);
 
                 Rigidbody.AddForce(transform.up * JumpStrength, ForceMode2D.Impulse);
             }
@@ -130,13 +130,13 @@ public class EnemyAI : MonoBehaviour
 
             if(CanAttack)
         {
-            Rigidbody.velocity = new Vector2(0f, Rigidbody.velocity.y);
+            Rigidbody.linearVelocity = new Vector2(0f, Rigidbody.linearVelocity.y);
             StartCoroutine(Attack());
         }
 
 
-            Rigidbody.velocity = new Vector2(Direction * EnemySpeed, Rigidbody.velocity.y);
-            animator.SetFloat("Speed", Mathf.Abs(Rigidbody.velocity.x));
+            Rigidbody.linearVelocity = new Vector2(Direction * EnemySpeed, Rigidbody.linearVelocity.y);
+            animator.SetFloat("Speed", Mathf.Abs(Rigidbody.linearVelocity.x));
             animator.SetFloat("Direction", Direction);
 
 
@@ -201,7 +201,7 @@ public class EnemyAI : MonoBehaviour
 
     private void OnCollisionStay2D(Collision2D collision)
     {
-        if(collision.gameObject.CompareTag("Player"))
+        if(collision.gameObject.CompareTag("Player" ) && !Dead)
         {
             CharacterController playerScript = collision.gameObject.GetComponent<CharacterController>();
             playerScript.TakeDamage(AttackDamage);
