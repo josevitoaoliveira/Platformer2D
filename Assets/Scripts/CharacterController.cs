@@ -1,6 +1,8 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
+
 
 public class CharacterController : MonoBehaviour
 {
@@ -26,6 +28,10 @@ public class CharacterController : MonoBehaviour
 
     [SerializeField] int MaxLife = 20;
 
+    [SerializeField] bool TakeHit = false;
+    [SerializeField] bool Dead = false;
+
+
     public bool canTakeDamage = true;
     public float invincibilityTime = 1.5f;
     public int ActualLife;
@@ -39,6 +45,7 @@ public class CharacterController : MonoBehaviour
     float FacingDirection = 1f; /*Direita = 1f, Esquerda = -1f*/
 
 
+    [SerializeField] Image LifeBar;
 
     [SerializeField] Rigidbody2D Rigidbody;
     [SerializeField] Transform GroundCheck;
@@ -81,16 +88,25 @@ public class CharacterController : MonoBehaviour
         {
             return;
         }
+
+        IsAttacking = false;
         canTakeDamage = false;
         StartCoroutine(DamageCooldown());
+        StartCoroutine(HitStun());
         ActualLife -= damageAmount;
+        LifeBar.fillAmount = (float)ActualLife / MaxLife;
+
 
         
-        Rigidbody.velocity = new Vector2(0f, Rigidbody.velocity.y);
+        animator.SetTrigger("TakeHit");
+
 
         if(ActualLife <= 0)
         {
-            Destroy(gameObject);
+
+            Dead = true;
+            Rigidbody.velocity = new Vector2(0f, 0f);
+            animator.SetTrigger("Dead");
         }
     }
 
@@ -117,6 +133,15 @@ public class CharacterController : MonoBehaviour
         }
         animator.SetFloat("FacingDirection", FacingDirection);
 
+        if (TakeHit)
+        {
+            return;
+        }
+
+        if (Dead)
+        {
+            return;
+        }
 
         if(Input.GetButtonDown("Jump") && (CheckGround() || DoubleJumped))
         {
@@ -224,9 +249,24 @@ public class CharacterController : MonoBehaviour
         IsAttacking = false;
     }
 
+    private IEnumerator HitStun()
+{
+    TakeHit = true;
+    yield return new WaitForSeconds(0.4f); 
+    TakeHit = false;
+}
+
     private IEnumerator DamageCooldown()
     {
         yield return new WaitForSeconds(invincibilityTime);
         canTakeDamage = true;
+    }
+
+    public void FinishDeath()
+    {
+        Destroy(gameObject);
+
+        Dead = false;
+
     }
 }
