@@ -1,11 +1,12 @@
 
+
 # ⚔️ Platformer 2D - Action & Exploration
 
 ![Unity](https://img.shields.io/badge/Unity-100000?style=for-the-badge&logo=unity&logoColor=white)
 ![C#](https://img.shields.io/badge/C%23-239120?style=for-the-badge&logo=c-sharp&logoColor=white)
 
 > **Status do Projeto:** Em desenvolvimento ativo 🚀
-><img width="721" height="377" alt="Gif" src="https://github.com/user-attachments/assets/c6d4b634-453f-4d6d-8419-47ca91d6ed2c" />
+><img width="723" height="407" alt="gifreadme1" src="https://github.com/user-attachments/assets/2f011a82-0b11-4bea-a4f0-98578adf03ae" />
 
 
 ## 📖 Sobre o Projeto
