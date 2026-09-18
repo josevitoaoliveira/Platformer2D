@@ -106,7 +106,6 @@ public class CharacterController : MonoBehaviour
 
             Dead = true;
             Rigidbody.velocity = new Vector2(0f, 0f);
-            animator.SetTrigger("Dead");
         }
     }
 
@@ -140,6 +139,8 @@ public class CharacterController : MonoBehaviour
 
         if (Dead)
         {
+            animator.SetTrigger("Dead");
+
             return;
         }
 
